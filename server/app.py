@@ -6,6 +6,7 @@ from functions.review_generation import gen_review
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 import os
+import google.generativeai as genai
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -14,8 +15,10 @@ import jwt, json
 from datetime import datetime, timedelta
 
 
+load_dotenv()  # Loads the variables from the .env file
+
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mock_interview.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 CORS(app)
@@ -25,7 +28,6 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-load_dotenv()  # Loads the variables from the .env file
 gemini_api_key = os.getenv('GEMINI_API_KEY3')
 SECRET_KEY = os.getenv("SECRET_KEY")
 
