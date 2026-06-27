@@ -34,7 +34,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # Initialize the Generative AI model and chat session globally
 genai.configure(api_key=gemini_api_key)
 
-model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+model = genai.GenerativeModel(model_name="gemini-2.5-flash")
 @app.before_request
 def before_request():
     g.model = model
