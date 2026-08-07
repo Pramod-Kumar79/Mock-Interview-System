@@ -1,80 +1,75 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-
-const serverURL = process.env.REACT_APP_SERVER_URL;
+import React, { useContext, useState } from 'react';
+import '../css/AuthPages.css';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { toastErrorStyle, toastSuccessStyle } from '../components/utils/toastStyle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { GlobalContext } from '../components/utils/GlobalState';
 
 function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+    const { loginUser } = useContext(GlobalContext);
+    const navigate = useNavigate();
+    const serverURL = process.env.REACT_APP_SERVER_URL;
 
-  const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email.trim() || !password) {
+            toast.error("Please enter both email and password!", { ...toastErrorStyle(), autoClose: 2000 });
+            return;
+        }
 
-    try {
-      const res = await axios.post(`${serverURL}/api/login`, {
-        email,
-        password,
-      });
+        try {
+            setIsLoading(true);
+            const response = await axios.post(`${serverURL}/api/auth/login`, {
+                email: email.trim(),
+                password
+            });
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user_id", res.data.user_id);
-      localStorage.setItem("name", res.data.name);
+            loginUser(response.data.user, response.data.token);
+            toast.success("Welcome back!", { ...toastSuccessStyle(), autoClose: 1200 });
 
-      navigate("/");
-    } catch (err) {
-      alert("Invalid email or password");
-    }
-  };
+            navigate(response.data.user.role === 'recruiter' ? '/recruiter' : '/', { replace: true });
+        } catch (error) {
+            toast.error(error.response ? error.response.data.errorMsg : error.message || error,
+                { ...toastErrorStyle(), autoClose: 2500 }
+            );
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-  return (
-    <div className="container mt-5">
-      <h2>Login</h2>
+    return (
+        <div className='auth-page'>
+            <div className='auth-card'>
+                <h1 className='auth-title'>Welcome Back</h1>
+                <p className='auth-subtitle'>Log in to continue your interview journey</p>
 
-      <form onSubmit={handleLogin}>
-        <input
-          className="form-control mb-3"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
+                <form className='auth-form' onSubmit={handleSubmit}>
+                    <label>Email</label>
+                    <input type='email' value={email} placeholder='you@example.com'
+                        onChange={(e) => setEmail(e.target.value)} disabled={isLoading} />
 
-        <div style={{ position: "relative" }}>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="form-control mb-3"
-          />
+                    <label>Password</label>
+                    <input type='password' value={password} placeholder='••••••••'
+                        onChange={(e) => setPassword(e.target.value)} disabled={isLoading} />
 
-          <span
-            onClick={() => setShowPassword(!showPassword)}
-            style={{
-              position: "absolute",
-              right: "15px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              cursor: "pointer",
-              color: "#555",
-            }}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
-          </span>
+                    <button type='submit' className='auth-submit-btn' disabled={isLoading}>
+                        {isLoading ? <> Logging in <FontAwesomeIcon icon={faSpinner} spin /> </> : 'Log In'}
+                    </button>
+                </form>
+
+                <p className='auth-switch-text'>
+                    Don't have an account? <Link to='/register'>Sign up</Link>
+                </p>
+            </div>
         </div>
-
-        <button className="btn btn-primary">Login</button>
-      </form>
-
-      <p className="mt-3">
-        Don't have an account?
-        <Link to="/signup"> Sign Up</Link>
-      </p>
-    </div>
-  );
+    );
 }
 
 export default LoginPage;

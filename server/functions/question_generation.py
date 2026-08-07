@@ -26,22 +26,19 @@ def get_questions(job_title, experience_lvl, call_count):
     # print("\nJob Title = ", job_title)
     # print("\nJob experience_lvl = ", experience_lvl)
     # Check if passed job title is an valid job title
-    check_valid_msg = (f"Job Title : {job_title}\n\n"
-                    "Please check if this is an valid or appropriate job title given for an interview or not,"
-                    "\nIMPORTANT : PLEASE FOLLOW THE BELOW RULES\n"
-                    "RULE : If not valid then only return 'invalid', DONT WRITE ANYTHING ELSE\n"
-                    "RULE : If valid then only return 'valid', DONT WRITE ANYTHING ELSE\n"
-                    "RULE : Please assume proper or appropriate spelling if any spelling mistake is present in the passed job title")
-
-    # check_valid_response = g.chat.send_message(check_valid_msg)
+    check_valid_msg = (
+        f"Job Title / Role: {job_title}\n\n"
+        "Determine whether this is a valid, reasonable, or recognizable job title, role, domain, or common abbreviation for an interview "
+        "(e.g., SDE, AI/ML, Data Analytics, Software Engineer, Machine Learning, Data Analyst, DevOps, etc.).\n"
+        "IMPORTANT RULES:\n"
+        "RULE 1: If valid/reasonable, return ONLY the word 'valid'.\n"
+        "RULE 2: If complete gibberish, nonsensical, or invalid (e.g. 'xyz', 'asdf123'), return ONLY the word 'invalid'."
+    )
 
     check_valid_response = g.model.generate_content([check_valid_msg])
-    checkValid = check_valid_response.text.lower()
-    # print("\nCheck valid = ", checkValid)
+    checkValid = check_valid_response.text.strip().lower()
 
-    keywords = ["invalid", "no", "not", "not valid", "inappropriate"]
-    
-    if any(keyword in checkValid for keyword in keywords):
+    if "invalid" in checkValid or ("valid" not in checkValid and "yes" not in checkValid):
         return "Please provide a valid job title."
 
     msg = ""
@@ -53,7 +50,7 @@ def get_questions(job_title, experience_lvl, call_count):
             "RULE : include question numbers in the begining of each question\n"
             "RULE : DONT WRITE ANYTHING EXTRA EXCEPT THE QUESTIONS, NOT EVEN THE TITLE")
 
-    elif 2 >= call_count <= 7:
+    elif 4 <= call_count <= 7:
         msg = (f"Job Title: {job_title}\nExperience level: {experience_lvl}\n\n"
             "Generate exactly 5 questions that would be asked in an interview based on the job title and experience level provided."
             "\nIMPORTANT : PLEASE FOLLOW THE BELOW RULES\n"

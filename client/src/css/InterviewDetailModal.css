@@ -1,0 +1,366 @@
+/* .idm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.idm-card {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #EDC215;
+    border-radius: 14px;
+    padding: 30px 28px;
+    color: #eee;
+    font-family: "Roboto Slab", serif;
+}
+
+.idm-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.idm-close:hover {
+    color: #EDC215;
+}
+
+.idm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 16px;
+}
+
+.idm-header h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 22px;
+}
+
+.idm-meta {
+    color: #999;
+    font-size: 13px;
+    margin: 6px 0 0 0;
+    text-transform: capitalize;
+}
+
+.idm-score {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.idm-score span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.idm-score small {
+    color: #888;
+    font-size: 9px;
+}
+
+.idm-stats {
+    display: flex;
+    gap: 20px;
+    margin: 18px 0;
+}
+
+.idm-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.idm-stat-label {
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.idm-stat-value {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.idm-section {
+    margin-top: 22px;
+}
+
+.idm-section h3 {
+    color: #EDC215;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+}
+
+.idm-review {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.idm-review p {
+    margin: 0 0 10px 0;
+}
+
+.idm-qa {
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+}
+
+.idm-question {
+    color: #EDC215;
+    font-weight: bold;
+    font-size: 13.5px;
+    margin: 0 0 6px 0;
+}
+
+.idm-answer {
+    color: #ccc;
+    font-size: 13.5px;
+    margin: 0;
+    white-space: pre-wrap;
+} */
+
+
+.idm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 16px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.idm-card {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #EDC215;
+    border-radius: 14px;
+    padding: 30px 28px;
+    color: #eee;
+    font-family: "Roboto Slab", serif;
+}
+
+.idm-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 26px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.idm-close:hover {
+    color: #EDC215;
+}
+
+.idm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 16px;
+}
+
+.idm-header h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 22px;
+}
+
+.idm-meta {
+    color: #999;
+    font-size: 13px;
+    margin: 6px 0 0 0;
+    text-transform: capitalize;
+}
+
+.idm-score {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    border: 3px solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.idm-score span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.idm-score small {
+    color: #888;
+    font-size: 9px;
+}
+
+.idm-stats {
+    display: flex;
+    gap: 20px;
+    margin: 18px 0;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.idm-download-btn {
+    background: transparent;
+    color: #EDC215;
+    border: 1px solid #EDC215;
+    border-radius: 8px;
+    padding: 7px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.idm-download-btn:hover {
+    background: #EDC215;
+    color: #111;
+}
+
+.idm-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.idm-category-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.idm-category-name {
+    width: 150px;
+    flex-shrink: 0;
+    color: #ccc;
+    font-size: 13px;
+}
+
+.idm-category-bar-track {
+    flex: 1;
+    height: 8px;
+    background: #262626;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.idm-category-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+}
+
+.idm-category-value {
+    width: 30px;
+    text-align: right;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.idm-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.idm-stat-label {
+    color: #888;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.idm-stat-value {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.idm-section {
+    margin-top: 22px;
+}
+
+.idm-section h3 {
+    color: #EDC215;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 8px;
+}
+
+.idm-review {
+    color: #ddd;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.idm-review p {
+    margin: 0 0 10px 0;
+}
+
+.idm-qa {
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+}
+
+.idm-question {
+    color: #EDC215;
+    font-weight: bold;
+    font-size: 13.5px;
+    margin: 0 0 6px 0;
+}
+
+.idm-answer {
+    color: #ccc;
+    font-size: 13.5px;
+    margin: 0;
+    white-space: pre-wrap;
+}

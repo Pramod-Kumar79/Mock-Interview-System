@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto+Slab:wght@100..900&display=swap');
+
+.auth-page {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0c0c0c;
+    background-image: radial-gradient(circle at top, #1a1a1a 0%, #0c0c0c 70%);
+    padding: 40px 16px;
+    font-family: "Roboto Slab", serif;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 430px;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #EDC215;
+    border-radius: 14px;
+    padding: 36px 32px;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.auth-title {
+    color: #ffffff;
+    font-size: 28px;
+    margin: 0 0 6px 0;
+    text-align: center;
+}
+
+.auth-subtitle {
+    color: #9a9a9a;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 0 26px 0;
+}
+
+.role-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.role-btn {
+    flex: 1;
+    background: #1e1e1e;
+    color: #ccc;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 10px 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.role-btn.active {
+    background: #EDC215;
+    color: #111;
+    border-color: #EDC215;
+    font-weight: bold;
+}
+
+.role-hint {
+    color: #888;
+    font-size: 12.5px;
+    text-align: center;
+    margin: 6px 0 22px 0;
+    min-height: 32px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form label {
+    color: #d8d8d8;
+    font-size: 13px;
+    margin-bottom: 6px;
+    margin-top: 14px;
+}
+
+.auth-form input {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 11px 12px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.auth-form input:focus {
+    border-color: #EDC215;
+}
+
+.auth-form input:disabled {
+    opacity: 0.6;
+}
+
+.auth-submit-btn {
+    margin-top: 26px;
+    background: linear-gradient(to right, #EDC215, #f5da5a);
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.auth-submit-btn:hover {
+    opacity: 0.9;
+}
+
+.auth-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-switch-text {
+    color: #999;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 22px;
+}
+
+.auth-switch-text a {
+    color: #EDC215;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-switch-text a:hover {
+    text-decoration: underline;
+}

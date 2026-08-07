@@ -1,117 +1,32 @@
-# 🤖 AI Mock Interview System
+## <img src="https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/afd19053-6bfd-4100-b859-55cd25bbd66f" alt="Image Alt Text" style="width:27px;" /> Mock Interview System
 
-An AI-powered mock interview platform that helps users practice technical interviews with AI-generated questions, voice-based responses, emotion analysis, and detailed interview feedback.
+## Visit at https://mock-interview-system-python.vercel.app/
 
-## 🚀 Features
+### Note : Due to API limitations, this application only functions properly on the latest browsers such as Google Chrome, Microsoft Edge, etc.
+### Recomended : Google Chrome, Desktop Environment.
 
-* 🔐 User Authentication (Signup & Login)
-* 🔑 JWT-based Authentication
-* 👤 User Profile Management
-* 💾 Database Integration (SQLite, easily upgradeable to PostgreSQL)
-* 📝 AI-generated interview questions using Google Gemini
-* 🎤 Speech Recognition for answering questions
-* 😊 Emotion Analysis
-* 👀 Face Detection for suspicious activity monitoring
-* 📊 AI-generated interview feedback and performance review
-* 📚 Interview History
-* 📱 Responsive UI
+## Software Features
+* Front End : React
+* Back End : Python - Flask
+* Generate questions based on input using AI ( gemini ).
+* No of face detections for cheat analysis.
+* Emotion analysis.
+* Speech recognition for answering questions.
+* AI ( gemini ) generated review based on interview performance including emotion and cheat analysis.
+* Responsive Design.
 
----
+## Preview
+### Desktop version
+#### Landing Page
+![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/80b66b7f-f86e-4ffd-b185-b3f57e4e9a02)
+#### Job-Title Input
+![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/263c8ffe-79a2-4dc7-9096-48e0043b23b0)
 
-## 🛠️ Tech Stack
+#### Interview Page
+![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/03e1d7b1-0405-4827-8841-87d83d7541be)
 
-### Frontend
+#### Review Page
+![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/618aadb0-5881-4410-a815-e06e9410963b)
 
-* React.js
-* React Router
-* Axios
-* Bootstrap
-
-### Backend
-
-* Python
-* Flask
-* SQLAlchemy
-* Flask-Bcrypt
-* JWT
-* Google Gemini API
-
-### Database
-
-* SQLite
-* PostgreSQL (recommended for deployment)
-
----
-
-## 📂 Project Structure
-
-```text
-client/
-    React Frontend
-
-server/
-    Flask Backend
-```
-
----
-
-## ⚙️ Environment Variables
-
-### Server (.env)
-
-```env
-GEMINI_API_KEY3=your_gemini_api_key
-SECRET_KEY=your_secret_key
-DATABASE_URL=your_database_url   # Optional if using PostgreSQL
-```
-
-### Client (.env)
-
-```env
-REACT_APP_SERVER_URL=http://localhost:5000
-```
-
----
-
-## 🚀 Installation
-
-### Clone
-
-```bash
-git clone https://github.com/Pramod-Kumar79/Mock-Interview-System.git
-```
-
-### Backend
-
-```bash
-cd server
-pip install -r requirements.txt
-python app.py
-```
-
-### Frontend
-
-```bash
-cd client
-npm install
-npm start
-```
-
----
-
-## 📌 Upcoming Improvements
-
-* PostgreSQL Integration
-* Cloud Deployment
-* User Dashboard
-* Resume-based Interview Generation
-* Admin Panel
-* Email Verification
-* Forgot Password
-* Interview Analytics
-
----
-
-## 📄 License
-
-This project is intended for educational and learning purposes.
+### Mobile Version
+<img src="https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/4d6acbca-6144-4aba-8d4e-3540b308fc9f" alt="Image Alt Text" style="width:300px;" />

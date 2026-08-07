@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../css/HomePage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toastErrorStyle } from '../components/utils/toastStyle';
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -9,12 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { GlobalContext } from '../components/utils/GlobalState';
 
-const serverURL = process.env.REACT_APP_SERVER_URL;
-
-console.log("SERVER URL =", serverURL);
-
 function HomePage() {
-    const { updateGQtnGenerationData, setGValidInterview, setGValidReview } = useContext(GlobalContext);
+    const { updateGQtnGenerationData, setGValidInterview, setGValidReview, gUser, logoutUser } = useContext(GlobalContext);
     const [jobInput, setJobInput] = useState('');
     const [isVisible, setIsVisible] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -22,11 +18,6 @@ function HomePage() {
     const navigate = useNavigate();
     const [displayText, setDisplayText] = useState('');
     const serverURL = process.env.REACT_APP_SERVER_URL;
-    const token = localStorage.getItem("token");
-    const logout = () => {
-      localStorage.clear();
-      navigate("/login");
-    };
 
     useEffect(()=>{
         const text = "From Practice to Perfection - Your Interview Journey Starts Here!";
@@ -62,12 +53,6 @@ function HomePage() {
     };
 
     const handleStartInterviewClick = async () => {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          navigate("/login");
-          return;
-        }
-
         const sendingInput = jobInput.trim();
         if (sendingInput.length > 0) {
             try {
@@ -77,7 +62,7 @@ function HomePage() {
                     experience_lvl: experienceLevel
                 });
 
-                updateGQtnGenerationData(response.data.job_role, response.data.exp_lvl, response.data.qtns);
+                updateGQtnGenerationData(response.data.job_role, response.data.exp_level, response.data.qtns);
                 setGValidInterview(true); // set as global valid interview as true
                 navigate('/interview');
             } catch (error) {
@@ -102,131 +87,72 @@ function HomePage() {
         setJobInput(inputValue);
     };
 
+    const handleLogout = () => {
+        logoutUser();
+        navigate('/login', { replace: true });
+    };
+
     return (
-      <div className="Home-div">
-        <div className="header-div">
-          <h1 className="header-text">MOCK INTERVIEW</h1>
-          <div>
-            {!token ? (
-              <>
-                <button
-                  className="btn btn-primary me-2"
-                  onClick={() => navigate("/login")}
-                >
-                  Login
-                </button>
-
-                <button
-                  className="btn btn-success"
-                  onClick={() => navigate("/signup")}
-                >
-                  Sign Up
-                </button>
-              </>
-            ) : (
-              <button className="btn btn-danger" onClick={logout}>
-                Logout
-              </button>
-            )}
-          </div>
-        </div>
-        <div className="context-div">
-          <div className="text-div">
-            <div className="Typing-effect">
-              <p>{displayText}</p>
+        <div className='Home-div'>
+            <div className='header-div'>
+                <h1 className='header-text'>MOCK INTERVIEW</h1>
+                <div className='account-bar'>
+                    {gUser && (
+                        <>
+                            <span className='account-name'>{gUser.name}</span>
+                            <Link to='/history' className='account-link'>My History</Link>
+                            <button className='account-logout-btn' onClick={handleLogout}>Logout</button>
+                        </>
+                    )}
+                </div>
             </div>
+            <div className='context-div'>
+                <div className='text-div'>
+                   <div className='Typing-effect'>
+                        <p>{displayText}</p>
+                   </div> 
+                    
+                    <button
+                        className={`getStartedButton ${isVisible ? '' : 'hidden'}`}
+                        onClick={handleGetStartedClick}>Get Started</button>
+                </div>
 
-            <button
-              className={`getStartedButton ${isVisible ? "" : "hidden"}`}
-              onClick={handleGetStartedClick}
-            >
-              Get Started
-            </button>
-          </div>
+                <div className='video-div'>
+                    {/* <img className='image' src={'/assets/homePagePic3.jpg'} alt="Background" /> */}
+                    <video className='video-tag' src={'/assets/homePageVideo1.mp4'} autoPlay muted loop/>
+                </div>
 
-          <div className="video-div">
-            {/* <img className='image' src={'/assets/homePagePic3.jpg'} alt="Background" /> */}
-            <video
-              className="video-tag"
-              src={"/assets/homePageVideo1.mp4"}
-              autoPlay
-              muted
-              loop
-            />
-          </div>
+                <div className={`jobTitle-div ${isVisible ? 'hidden' : ''}`}>
+                    <FaArrowLeftLong className='Left-arrow' onClick={!isLoading ? handleBackClick : null} />
+                    <label className='joblabel'>Enter job role</label>
+                    <input className='jobinput' type='text' value={jobInput} onChange={handleInputChange}
+                        maxLength={35} placeholder='Eg: Java Developer' disabled={isLoading}/>
+                    {/* Radio buttons for experience level */}
+                    <div className='radio-div'>
+                        <label>
+                            <input type='radio' name='experienceLevel' value='fresher' checked={experienceLevel === 'fresher'}
+                                onChange={handleExperienceChange} disabled={isLoading}/>
+                            Fresher
+                        </label>
+                        <label>
+                            <input type='radio' name='experienceLevel' value='intermediate' checked={experienceLevel === 'intermediate'}
+                                onChange={handleExperienceChange} disabled={isLoading} />
+                            Intermediate
+                        </label>
+                        <label>
+                            <input type='radio' name='experienceLevel' value='experienced' checked={experienceLevel === 'experienced'}
+                                onChange={handleExperienceChange} disabled={isLoading} />
+                            Experienced
+                        </label>
+                    </div>
 
-          <div className={`jobTitle-div ${isVisible ? "hidden" : ""}`}>
-            <FaArrowLeftLong
-              className="Left-arrow"
-              onClick={!isLoading ? handleBackClick : null}
-            />
-            <label className="joblabel">Enter job role</label>
-            <input
-              className="jobinput"
-              type="text"
-              value={jobInput}
-              onChange={handleInputChange}
-              maxLength={35}
-              placeholder="Eg: Java Developer"
-              disabled={isLoading}
-            />
-            {/* Radio buttons for experience level */}
-            <div className="radio-div">
-              <label>
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="fresher"
-                  checked={experienceLevel === "fresher"}
-                  onChange={handleExperienceChange}
-                  disabled={isLoading}
-                />
-                Fresher
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="intermediate"
-                  checked={experienceLevel === "intermediate"}
-                  onChange={handleExperienceChange}
-                  disabled={isLoading}
-                />
-                Intermediate
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="experienceLevel"
-                  value="experienced"
-                  checked={experienceLevel === "experienced"}
-                  onChange={handleExperienceChange}
-                  disabled={isLoading}
-                />
-                Experienced
-              </label>
+                    <button className='StartInterviewButton' onClick={handleStartInterviewClick} disabled={isLoading}>
+                        {isLoading ? <> Preparing Interview <FontAwesomeIcon icon={faSpinner} spin /> </>
+                            : 'Start your interview'}
+                    </button>
+                </div>
             </div>
-
-            <button
-              className="StartInterviewButton"
-              onClick={handleStartInterviewClick}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  {" "}
-                  Preparing Interview <FontAwesomeIcon
-                    icon={faSpinner}
-                    spin
-                  />{" "}
-                </>
-              ) : (
-                "Start your interview"
-              )}
-            </button>
-          </div>
         </div>
-      </div>
     );
 }
 

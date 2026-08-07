@@ -1,8 +1,6 @@
 Flask
 Flask-Cors
 Flask-SQLAlchemy
-Flask-Bcrypt
+PyJWT
 python-dotenv
 google-generativeai
-PyJWT
-psycopg2-binary
