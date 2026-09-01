@@ -17,16 +17,23 @@
 
 ## Preview
 ### Desktop version
+#### Login Page
+![Login Page](assets/screenshots/login_page.png)
+
 #### Landing Page
-![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/80b66b7f-f86e-4ffd-b185-b3f57e4e9a02)
+![Landing Page](assets/screenshots/landing_page.png)
+
 #### Job-Title Input
-![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/263c8ffe-79a2-4dc7-9096-48e0043b23b0)
+![Job-Title Input](assets/screenshots/job_title_input.png)
 
 #### Interview Page
-![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/03e1d7b1-0405-4827-8841-87d83d7541be)
+![Interview Page](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/03e1d7b1-0405-4827-8841-87d83d7541be)
 
 #### Review Page
-![image](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/618aadb0-5881-4410-a815-e06e9410963b)
+![Review Page](https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/618aadb0-5881-4410-a815-e06e9410963b)
+
+#### My Interview History
+![My Interview History](assets/screenshots/history_page.png)
 
 ### Mobile Version
 <img src="https://github.com/MeghanathShetty/Mock-Interview-System-Python/assets/127648939/4d6acbca-6144-4aba-8d4e-3540b308fc9f" alt="Image Alt Text" style="width:300px;" />
